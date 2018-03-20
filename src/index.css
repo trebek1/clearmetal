@@ -1,0 +1,193 @@
+body {
+	padding: 5%;
+	text-align: center;
+}
+
+th, td, form {
+    padding: 5px;
+}
+
+select {
+	height: 20px;
+}
+
+#messageSuccess {
+	color: green;
+}
+
+#messageFail {
+	color: red;
+}
+
+.hide {
+	display: none;
+}
+.show {
+	display: block;
+}
+
+#vesselContainer td {
+	text-align: left;
+}
+
+#tableContainer {
+	max-height: 300px;
+	overflow: scroll;
+	cursor: pointer;
+}
+
+.clicked{
+	background-color: orange;
+}
+
+#vesselContainer .header {
+	text-align: left;
+}
+
+#leftAssignForm, #rightAssignForm {
+	display: inline-block;
+	max-width: 50%;
+	vertical-align:top;
+}
+
+.button {
+	border-radius: 5px;
+	font-size: 30px;
+	margin: 0px 20px;
+}
+
+.buttonContainer {
+	margin: 20px;
+	border-bottom: 1px solid gray;
+}
+
+.button a {
+	text-decoration: none;
+}
+
+.mobileNav{
+	display: none;
+}
+
+.burger:hover {
+	cursor: pointer;
+}
+
+.burger {
+	float: left;
+}
+
+.navNarrow {
+	clear: left;
+}
+
+.displayNone {
+	display: none;
+}
+
+.displayBlock {
+	display: block;
+}
+
+.icon {
+	min-height: 35px;
+}
+
+.normalNav a {
+	color: black;
+}
+
+.normalNav a:active{
+	color: red;
+}
+
+.selected {
+	background: orange;
+}
+
+.mobileLinks a {
+	text-decoration: none;
+	display: block;
+	float: left;
+	clear: left;
+	padding: 0.5em 0;
+	color: black;
+}
+
+.mobileLinks:after {
+	content: "";
+    clear: both;
+    display: table;
+}
+
+#vesselContainer, #instructionsContainer, #container{
+	display: inline-block;
+}
+.vessel:after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+.header {
+	font-size: 20px;
+	text-decoration: underline;
+}
+
+.headerSection {
+	margin-bottom: 10px;
+	float: left;
+}
+
+.headerSection:after{
+	content: "";
+	clear: both;
+	display: table;
+}
+
+.instruction {
+	float: left;
+	font-size: 20px	;
+}
+
+.instruction:after {
+	content: "";
+	clear: both; 
+	display: table;
+}
+
+.vesselId {
+	float: left;
+	min-width: 25px;
+}
+
+.vesselName {
+	float: left;
+}
+
+#formContainer {
+	margin-top: 20px;
+}
+@media (max-width: 900px) {
+	.normalNav {
+		display: none;
+	}
+
+	.mobileNav {
+		display: block;
+	}
+}
+
+/* fix to show scroll bar */
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+
