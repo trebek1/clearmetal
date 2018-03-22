@@ -58,7 +58,7 @@ class Containers extends Component {
         <table>
           <thead>
             <tr>
-              <th className="header">Id</th>
+              <th className="header">Container Id</th>
               <th className="header">Container Number</th>
             </tr>
           </thead>

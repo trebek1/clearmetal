@@ -41,8 +41,8 @@ class Plans extends Component {
       for (let i = 0; i < plans.length; i++) {
         const target = plans[i];
         response.push(<tr key={i}>
-          <td> { target.vessel_id } </td>
-          <td> { Plans.renderIdString(target.container_ids) }</td>
+          <td className="vessel id"> { target.vessel_id } </td>
+          <td className="ids"> { Plans.renderIdString(target.container_ids) }</td>
         </tr>);
       }
       return response;
@@ -68,7 +68,7 @@ class Plans extends Component {
         <table>
           <thead>
             <tr>
-              <th className="header">Id</th>
+              <th className="header">Vessel Id</th>
               <th className="header">Container Ids</th>
             </tr>
           </thead>

@@ -29,7 +29,7 @@ class Vessels extends Component {
       const target = vessels[i];
       response.push(<tr key={i}>
         <td> { target.id } </td>
-        <td> { target.name }</td>
+        <td className="name"> { target.name }</td>
       </tr>);
     }
     return response;
@@ -57,7 +57,7 @@ class Vessels extends Component {
         <table>
           <thead>
             <tr>
-              <th className="header">Id</th>
+              <th className="header">Vessel Id</th>
               <th className="header">Vessel Name</th>
             </tr>
           </thead>

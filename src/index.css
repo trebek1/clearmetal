@@ -26,8 +26,12 @@ select {
 	display: block;
 }
 
-#vesselContainer td {
+#vesselContainer td.ids, td.name {
 	text-align: left;
+}
+
+#vesselContainer td .vessel.id {
+	text-align: center;
 }
 
 #tableContainer {
