@@ -8,21 +8,22 @@ class Containers extends Component {
   constructor() {
     super();
     this.state = {
-      isLoading: false,
       fetchedContainers: false,
     };
   }
 
   componentDidMount() {
     if (this.props.containers.length === 0 && this.state.fetchedContainers === false) {
-      this.setState({
-        isLoading: true,
+      this.props.getData('containers').then(() => {
+        this.setState({
+          fetchedContainers: true,
+        });
       });
-      this.props.getData('containers', this);
     }
   }
 
-  handleResponse(containers) {
+  handleResponse() {
+    const { containers } = this.props;
     const response = [];
     for (let i = 0; i < containers.length; i++) {
       const target = containers[i];
@@ -31,17 +32,12 @@ class Containers extends Component {
         <td> { target.container_number }</td>
       </tr>);
     }
-    if (this.state.isLoading) {
-      this.setState({
-        isLoading: false,
-      });
-    }
 
     return response;
   }
   render() {
     if (this.props.containers.length === 0) {
-      if (this.state.isLoading && this.state.fetchedContainers === false) {
+      if (this.state.fetchedContainers === false) {
         return (
           <div>
             <div> Loading Container Data... </div>
@@ -67,7 +63,7 @@ class Containers extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.handleResponse(this.props.containers)}
+            {this.handleResponse()}
           </tbody>
         </table>
       </div>

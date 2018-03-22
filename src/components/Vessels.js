@@ -8,21 +8,22 @@ class Vessels extends Component {
   constructor() {
     super();
     this.state = {
-      isLoading: false,
       fetchedVessels: false,
     };
   }
 
   componentDidMount() {
     if (this.props.vessels.length === 0 && this.state.fetchedVessels === false) {
-      this.setState({
-        isLoading: true,
+      this.props.getData('vessels').then(() => {
+        this.setState({
+          fetchedVessels: true,
+        });
       });
-      this.props.getData('vessels', this);
     }
   }
 
-  handleResponse(vessels) {
+  handleResponse() {
+    const { vessels } = this.props;
     const response = [];
     for (let i = 0; i < vessels.length; i++) {
       const target = vessels[i];
@@ -31,17 +32,11 @@ class Vessels extends Component {
         <td> { target.name }</td>
       </tr>);
     }
-
-    if (this.state.isLoading) {
-      this.setState({
-        isLoading: false,
-      });
-    }
     return response;
   }
   render() {
     if (this.props.vessels.length === 0) {
-      if (this.state.isLoading && this.state.fetchedVessels === false) {
+      if (this.state.fetchedVessels === false) {
         return (
           <div>
             <div> Loading Vessel Data... </div>
@@ -67,7 +62,7 @@ class Vessels extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.handleResponse(this.props.vessels)}
+            {this.handleResponse()}
           </tbody>
         </table>
       </div>

@@ -6,11 +6,11 @@ import { getData, setPlan } from '../actions';
 import AssignContainersHeader from './AssignContainersHeader';
 
 class AssignContainers extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      fetchedContainers: false,
-      fetchedVessels: false,
+      fetchedContainers: (props.containers.length > 0),
+      fetchedVessels: (props.vessels.length > 0),
       selectedContainers: [],
       success: false,
       fail: false,
@@ -19,20 +19,18 @@ class AssignContainers extends Component {
 
   componentDidMount() {
     if (this.props.containers.length === 0 && this.state.fetchedContainers === false) {
-      this.props.getData('containers', this);
+      this.props.getData('containers').then(() => {
+        this.setState({
+          fetchedContainers: true,
+        });
+      });
     }
 
     if (this.props.vessels.length === 0 && this.state.fetchedVessels === false) {
-      this.props.getData('vessels', this);
-    }
-    if (this.props.containers.length > 0) {
-      this.setState({
-        fetchedContainers: true,
-      });
-    }
-    if (this.props.vessels.length > 0) {
-      this.setState({
-        fetchedVessels: true,
+      this.props.getData('vessels').then(() => {
+        this.setState({
+          fetchedVessels: true,
+        });
       });
     }
   }
@@ -52,7 +50,22 @@ class AssignContainers extends Component {
       target.classList.remove('clicked');
     }
 
-    this.props.setPlan(data, this);
+    this.props.setPlan(data)
+      .then(res => res.json())
+      .then((response) => {
+        this.setState({
+          success: true,
+          fail: false,
+        });
+        console.log('Success:', response);
+      })
+      .catch((error) => {
+        this.setState({
+          fail: true,
+          success: false,
+        });
+        console.error('Error:', error);
+      });
   }
 
   clickRow(e) {
@@ -88,7 +101,7 @@ class AssignContainers extends Component {
 
   renderContainers() {
     const response = [];
-    const containers = this.props.containers;
+    const { containers } = this.props;
     for (let i = 0; i < containers.length; i++) {
       const target = containers[i];
       response.push(<tr key={i} onClick={(e) => { this.clickRow(e); }}>

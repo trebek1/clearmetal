@@ -49,56 +49,27 @@ export function error() {
   };
 }
 
-export function getData(data, that) {
+export function getData(data) {
   return function (dispatch) {
     return fetchData(data).then(response => response.json())
       .catch(error => console.error('Error:', error))
       .then((json) => {
         if (data === 'vessels') {
-          that.setState({
-            fetchedVessels: true,
-          });
-        } else if (data === 'containers') {
-          that.setState({
-            fetchedContainers: true,
-          });
-        } else if (data === 'vessel_plans') {
-          that.setState({
-            loaded: true,
-          });
-        }
-
-        if (data === 'containers') {
-          return dispatch(getContainers(json));
-        } else if (data === 'vessels') {
           return dispatch(getVessels(json));
+        } else if (data === 'containers') {
+          return dispatch(getContainers(json));
         } else if (data === 'vessel_plans') {
           return dispatch(getPlans(json));
+        } else {
+          return dispatch(error());
         }
-        return dispatch(error());
       });
   };
 }
 
-
-export function setPlan(data, that) {
+export function setPlan(data) {
   return function () {
-    return setData(data)
-      .then(res => res.json())
-      .catch((error) => {
-        that.setState({
-          fail: true,
-          success: false,
-        });
-        console.error('Error:', error); 
-      })
-      .then((response) => {
-        that.setState({
-          success: true,
-          fail: false,
-        });
-        console.log('Success:', response);
-      });
+    return setData(data);
   };
 }
 

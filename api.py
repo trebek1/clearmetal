@@ -84,4 +84,4 @@ api.add_resource(Vessels, '/vessels')
 api.add_resource(VesselPlan, '/vessel_plans')
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8000)
+    app.run(debug=True, port=8000, threaded=True)
