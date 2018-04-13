@@ -5,8 +5,8 @@ import FontAwesome from 'react-fontawesome';
 import { getData } from '../actions';
 
 class Containers extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       fetchedContainers: false,
     };
@@ -36,6 +36,7 @@ class Containers extends Component {
     return response;
   }
   render() {
+    console.log("what is thius ", this);
     if (this.props.containers.length === 0) {
       if (this.state.fetchedContainers === false) {
         return (
